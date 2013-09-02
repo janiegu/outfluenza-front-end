@@ -1,0 +1,123 @@
+body {
+	background-color: #fff;
+	font-family: helvetica;
+	font-size: 13px;
+	color: #555;
+	min-width: 1150px;
+}
+
+/* minimal
+*******************************************************************************/
+button.minimal {
+  background: #e3e3e3;
+  border: 1px solid #bbb;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: inset 0 0 1px 1px #f6f6f6;
+  -moz-box-shadow: inset 0 0 1px 1px #f6f6f6;
+  box-shadow: inset 0 0 1px 1px #f6f6f6;
+  color: #333;
+  font: bold 12px "helvetica neue", helvetica, arial, sans-serif;
+  line-height: 1;
+  padding: 8px 0 9px;
+  text-align: center;
+  text-shadow: 0 1px 0 #fff;
+  padding: 5px 15px;
+  margin-top: 10px;
+  }
+  button.minimal:hover {
+    background: #d9d9d9;
+    -webkit-box-shadow: inset 0 0 1px 1px #eaeaea;
+    -moz-box-shadow: inset 0 0 1px 1px #eaeaea;
+    box-shadow: inset 0 0 1px 1px #eaeaea;
+    color: #222;
+    cursor: pointer; }
+  button.minimal:active {
+    background: #d0d0d0;
+    -webkit-box-shadow: inset 0 0 1px 1px #e3e3e3;
+    -moz-box-shadow: inset 0 0 1px 1px #e3e3e3;
+    box-shadow: inset 0 0 1px 1px #e3e3e3;
+    color: #000; }
+    
+.header {
+	padding: 20px 0 0 0;
+    width: 910px;
+    height: 103px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.main {
+    position: fixed;
+    background-color: #fff;
+    top: 120px;
+}
+
+.maintitle {
+    color: #000;
+    font-family: helvetica;
+    font-size: 50px;
+    font-weight: 100;
+}
+
+.title {
+    font-family: helvetica;
+    font-size: 25px;
+    font-weight: 100;
+    line-height: 1.4em;
+
+}
+
+.subtitle {
+    font-family: helvetica;
+    font-size: 14px;
+    line-height: 1.0em;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #000;
+    font-weight: bolder;
+}
+
+.nav {
+    position: fixed;
+    width: 200px;
+    height: 586px;
+    top: 17px;
+    left: 920px;
+    background-color: #f6f6f6;
+    padding: 10px;
+}
+
+.box {
+    border: 5px #fff solid;
+    margin-top: 10px;
+    font-size: 20px;
+    width: 188px;
+    font-family: helvetica;
+    color: rgb(66, 146, 198);
+}
+.counties {
+  fill: none;
+}
+
+button {
+    font-family: helvetica;
+}
+
+.states {
+  fill: none;
+  stroke: #fff;
+  stroke-linejoin: round;
+}
+
+.q0-9 { fill:rgb(247,251,255); }
+.q1-9 { fill:rgb(222,235,247); }
+.q2-9 { fill:rgb(198,219,239); }
+.q3-9 { fill:rgb(158,202,225); }
+.q4-9 { fill:rgb(107,174,214); }
+.q5-9 { fill:rgb(66,146,198); }
+.q6-9 { fill:rgb(33,113,181); }
+.q7-9 { fill:rgb(8,81,156); }
+.q8-9 { fill:rgb(8,48,107); }
