@@ -1,3 +1,8 @@
+.background {
+	fill: none;
+	pointer-events: all;
+}
+
 body {
 	background-color: #fff;
 	font-family: helvetica;
@@ -105,7 +110,8 @@ button.minimal {
 
 .counties .active {
 	fill: orange;
-	stroke: black;
+	stroke: white;
+	stroke-width: 1.5;
 	stroke-linejoin: round;
 }
 
