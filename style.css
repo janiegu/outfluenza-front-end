@@ -1,5 +1,6 @@
 .background {
 	fill: none;
+	color: red;
 	pointer-events: all;
 }
 

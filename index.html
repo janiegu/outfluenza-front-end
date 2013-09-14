@@ -1,16 +1,30 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html>
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
     <title>Outfluenza</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css">
   </head>
-  <body>
-    <script src="http://d3js.org/d3.v3.min.js"></script>
-	<script src="http://d3js.org/queue.v1.min.js"></script>
-	<script src="http://d3js.org/topojson.v1.min.js"></script>
-    <script type="text/javascript" src="script.js"></script>
-    <div class="header">
+  <body onload="getData()">
+    <div class="nav">
+    	<span class="title">where are you?</span><br />
+    	Get detailed information about a specific area.
+    	<input id="location" type="text" class="box" placeholder="Enter ZIP">
+    	<button type="submit" value="go" class="minimal">Go!</button><br /><br />
+    	<span class="title">time lapse</span><br />
+    	Look at our past maps and use our predictive features.<br /><br />
+    	<form>
+    		<input type="range" name="dataset" value="salary" min="0" max="100" onchange="getData" />
+    	</form>
+    	<button type="submit" value="animate" class="minimal">Animate!</button>
+	</div>
+    <div class="main" onload="getData()">
+        <script src="http://d3js.org/d3.v3.min.js"></script>
+		<script src="http://d3js.org/queue.v1.min.js"></script>
+		<script src="http://d3js.org/topojson.v1.min.js"></script>
+    	<script type="text/javascript" src="/script.js"></script>
+    </div>
+	<div class="header">
         <span class="maintitle">Live Influenza Tracking</span>
         <br /><span class="subtitle">
         Realtime information on the spread of influenza</span>
@@ -18,15 +32,5 @@
     <div id="interactiveMap">
     	<!-- to be populated by Javascript code -->
     </div>
-   	<div class="nav">
-    	<span class="title">where are you?</span><br />
-    Get detailed information about a specific area.
-    	<input id="location" type="text" class="box" placeholder="Enter ZIP">
-    	<button type="submit" value="go" class="minimal">Go!</button><br /><br />
-    	<span class="title">time lapse</span><br />
-    	Look at our past maps and use our predictive features.<br /><br />
-    	<input type="range" min="0" max="100"><br />
-    	<button type="submit" value="animate" class="minimal">Animate!</button>
-	</div>
   </body>
 </html>
