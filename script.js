@@ -26,14 +26,48 @@ var projection = d3.geo.albersUsa()
 var rateById = d3.map();
 
 var quantize = d3.scale.quantize()
-    .domain([0, .15])
+    .domain([0, 0.15])
     .range(d3.range(9).map(function(i) { return "q" + i + "-9"; }));
+
+var quantizeState = d3.scale.quantize()
+	.domain([0, 80])
+	.range(d3.range(9).map(function(i) { return "q" + i + "-9"; }));
 
 var path = d3.geo.path()
 	.projection(projection);
 
 var g;
-function ready(error, us) {
+
+function readyState(error, us) {
+	// checks if an svg has already been appended. if so, remove before appending new one
+	var map = d3.select("#interactiveMap").select("svg");
+	if (map != null) map.remove();
+	
+  var svg = d3.select("#interactiveMap").append("svg")
+	.attr("width", width)
+	.attr("height", height);
+
+  svg.append("rect")
+	.attr("class", "background")
+	.attr("width", width)
+	.attr("height", height)
+	.on("click", clicked);
+
+  g = svg.append("g")
+	
+  g.append("g")
+      .attr("class", "states")
+    .selectAll("path")
+      .data(topojson.feature(us, us.objects.states).features)
+    .enter().append("path")
+      .attr("class", function(d) { return quantizeState(rateById.get(d.id)); })
+      .attr("d", path)
+  	  .on("click", clicked);
+  
+  rateById.forEach( function(d, i) { console.log(d + " " + i); })
+}
+
+function readyCounty(error, us) {
 	// checks if an svg has already been appended. if so, remove before appending new one
 	var map = d3.select("#interactiveMap").select("svg");
 	if (map != null) map.remove();
@@ -88,6 +122,9 @@ function clicked(d) {
 	      .duration(750)
 	      .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
 	      .style("stroke-width", 1.5 / k + "px");
+	  
+	  var bubble = new Opentip(g.selectAll("path"));
+	  bubble.show();
 }
 
 /**
@@ -110,29 +147,31 @@ function queue_past() {
   queue()
     .defer(d3.json, "us.json")
     .defer(d3.tsv, "all.tsv", function(d) { rateById.set(d.id, +d.past); })
-    .await(ready);
+    .await(readyCounty);
 };
 
 function queue_present() {
   queue()
     .defer(d3.json, "us.json")
     .defer(d3.tsv, "all.tsv", function(d) { rateById.set(d.id, +d.present); })
-    .await(ready);
+    .await(readyCounty);
 };
 
 function queue_future() {
   queue()
     .defer(d3.json, "us.json")
     .defer(d3.tsv, "all.tsv", function(d) { rateById.set(d.id, +d.future); })
-    .await(ready);
+    .await(readyCounty);
 };
 
 function queue_compiled() {
   queue()
     .defer(d3.json, "us.json")
-    .defer(d3.tsv, "all.tsv", function(d) {
-      rateById.set(d.id, +d.past * past_index + +d.present * present_index + +d.future * future_index); })
-    .await(ready);
+//    .defer(d3.tsv, "all.tsv", function(d) {
+//      rateById.set(d.id, +d.past * past_index + +d.present * present_index + +d.future * future_index); })
+      .defer(d3.tsv, "us-state-names.tsv", function(d) { rateById.set(d.id, +d.id); })
+//    .await(readyCounty);
+      .await(readyState);
 };
 
 d3.selectAll("input").on("change", change);
